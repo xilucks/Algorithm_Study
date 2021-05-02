@@ -32,7 +32,7 @@ public class Parentheses {
 					if(stack [top] == '{') {
 						top --;
 					}
-					
+				
 				}
 				if(chr == ']') {
 					if(stack [top] == '[') {
