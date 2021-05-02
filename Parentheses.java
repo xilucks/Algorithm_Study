@@ -26,25 +26,19 @@ public class Parentheses {
 					if(stack [top] == '(') {
 						top--;
 					}
-					else {
-						break;
-					}
+					
 				}
 				if(chr == '}') {
 					if(stack [top] == '{') {
 						top --;
 					}
-					else {
-						break;
-					}
+					
 				}
 				if(chr == ']') {
 					if(stack [top] == '[') {
 						top --;
 					}
-					else {
-						break;
-					}
+					
 				}
 			}
 			}
@@ -56,6 +50,5 @@ public class Parentheses {
 			System.out.println("ERROR");
 		}
 		
-
 }
 }
