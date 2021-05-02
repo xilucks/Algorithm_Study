@@ -8,47 +8,54 @@ public class Parentheses {
 		Scanner scan = new Scanner(System.in);
 		char[] stack = new char[1000];
 		String sentence;
-		int chrcount = 0;
-		System.out.println("°ıÈ£½Ö ÀÔ·Â");
+		int top = -1;
+
 		sentence = scan.next();
+		
 		for(int i = 0; i < sentence.length(); i++) {
 			char chr = sentence.charAt(i);
-			if(chr == '(' || chr == '{' || chr == '[' || chr ==')' || chr == '}' || chr == ']') {
-				stack[chrcount] = chr;
-				chrcount ++;
+			if(chr == '(' || chr == '{' || chr == '[') {
+				stack[++top] = chr;
+				}
+			else if (top < 0 ) {
+				top = 0;
+				break;
 			}
 			else {
-				continue;
+				if(chr == ')') {
+					if(stack [top] == '(') {
+						top--;
+					}
+					else {
+						break;
+					}
+				}
+				if(chr == '}') {
+					if(stack [top] == '{') {
+						top --;
+					}
+					else {
+						break;
+					}
+				}
+				if(chr == ']') {
+					if(stack [top] == '[') {
+						top --;
+					}
+					else {
+						break;
+					}
+				}
 			}
+			}
+		
+		if ( top == -1 ) {
+			System.out.println("OK");
 		}
-		for (int j = 0; j < chrcount ; j ++) {
-			if(stack[j] == ')') {
-				if(stack[j-1] != '(') {
-					System.out.println("false");}
-				else {
-					continue;}
-				
-			}
-			if(stack[j] == '}') {
-				if(stack[j-1] != '{') {
-					System.out.println("false");}
-				else {
-					continue;}
-			}
-				
-			if(stack[j] == ']') {
-				if(stack[j-1] != '[') {
-					System.out.println("false");}
-				else {
-					continue;
-				}
-				}
+		else {
+			System.out.println("ERROR");
+		}
 		
-		
-		
-
-	}
-
 
 }
 }
