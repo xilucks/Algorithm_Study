@@ -18,8 +18,13 @@ public class Parentheses {
 				stack[++top] = chr;
 				}
 			else if (top < 0 ) {
+				if(chr - '0' >= 0 ||chr == '+'||chr == '-'|| chr == '*'|| chr == '/') {
+				continue;
+				}
+				else {
 				top = 0;
-				break;
+				}
+				
 			}
 			else {
 				if(chr == ')') {
@@ -31,12 +36,14 @@ public class Parentheses {
 				if(chr == '}') {
 					if(stack [top] == '{') {
 						top --;
+						
 					}
 				
 				}
 				if(chr == ']') {
 					if(stack [top] == '[') {
 						top --;
+						
 					}
 					
 				}
@@ -45,9 +52,11 @@ public class Parentheses {
 		
 		if ( top == -1 ) {
 			System.out.println("OK");
+			
 		}
 		else {
 			System.out.println("ERROR");
+			
 		}
 		
 }
