@@ -1,5 +1,4 @@
 package Algorithm_Task_4;
-
 import java.util.Scanner;
 
 public class Two {
@@ -8,8 +7,7 @@ public class Two {
 		mergeSort(arr,tmp,0,arr.length-1);
 		
 	}
-	static void mergeSort(String[]arr,String[]tmp,int start,int end) {
-		
+	static void mergeSort(String[]arr,String[]tmp,int start,int end) {	
 		if(start<end) {
 		int mid = (start+end)/2;
 		mergeSort(arr,tmp,start,mid);
@@ -26,7 +24,7 @@ public class Two {
 		int part2 = mid+1;
 		int index = start;
 		while(part1<=mid && part2<=end) {
-		if((int)tmp[part1].charAt(0) < (int)tmp[part2].charAt(0)) {
+			if((int)tmp[part1].charAt(0) < (int)tmp[part2].charAt(0)) {
 				arr[index] = tmp[part1];
 				part1 ++;
 			}
@@ -34,27 +32,37 @@ public class Two {
 				arr[index] = tmp[part2];
 				part2 ++;
 			}
-			
 			else {
-				int addindex = 0;
-				if(addindex > tmp[part1].length() || addindex>tmp[part2].length()) {
-					break;
-				}
-				else {
-				while((int)tmp[part1].charAt(addindex) < (int)tmp[part2].charAt(addindex) ||
-					(int)tmp[part1].charAt(addindex) > (int)tmp[part2].charAt(addindex)) {
+				int addindex= 1;
+				int smalllength = 0;//둘중 길이가 짧은거 만큼 돌림
+				int result = -1;//-1이면 정렬이 안된거 0이면 된거
+				int p1length = tmp[part1].length();
+				int p2length = tmp[part2].length();
+				if(p1length >= p2length) smalllength = p2length;
+				else smalllength = p1length;
+				while(addindex <smalllength) {
+					if(tmp[part1].charAt(addindex)<tmp[part2].charAt(addindex)) {
+						arr[index] = tmp[part1];
+						part1++;
+						result = 0;
+						break;
+					}
+					else if(tmp[part1].charAt(addindex)>tmp[part2].charAt(addindex)) {
+						arr[index] = tmp[part2];
+						part2 ++;
+						result = 0;
+						break;
+					}
 					addindex++;
 				}
-				if((int)tmp[part1].charAt(addindex) < (int)tmp[part2].charAt(addindex)) {
+				if(result != 0 &&tmp[part1].length() <= tmp[part2].length()) {
 					arr[index] = tmp[part1];
 					part1 ++;
-					break;
+				
 				}
-				else if((int)tmp[part1].charAt(addindex) > (int)tmp[part2].charAt(addindex)) {
+				else if(result != 0 &&tmp[part1].length() > tmp[part2].length()){
 					arr[index] = tmp[part2];
 					part2 ++;
-					break;
-				}
 				}
 			}
 			index++;
